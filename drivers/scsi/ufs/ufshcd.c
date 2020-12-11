@@ -10694,6 +10694,8 @@ static int ufshcd_suspend(struct ufs_hba *hba, enum ufs_pm_op pm_op)
 	ufsf_suspend(hba->ufsf);
 #endif
 #if defined(CONFIG_UFSHPB_TOSHIBA)
+	} else {
+		ufshpb_suspend_toshiba(hba);
 	}
 #endif
 	/*
@@ -11005,6 +11007,11 @@ static int ufshcd_resume(struct ufs_hba *hba, enum ufs_pm_op pm_op)
 
 	/* Schedule clock gating in case of no access to UFS device yet */
 	ufshcd_release_all(hba);
+#if defined(CONFIG_UFSHPB_TOSHIBA)
+	if ( ufshcd_is_hpb_supported(hba) ){
+		ufshpb_resume_toshiba(hba);
+	}
+#endif
 	goto out;
 
 set_old_dev_pwr_mode:
