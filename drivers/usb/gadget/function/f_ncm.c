@@ -1462,7 +1462,8 @@ static int ncm_bind(struct usb_configuration *c, struct usb_function *f)
 	 */
 	if (!ncm_opts->bound) {
 		mutex_lock(&ncm_opts->lock);
-		ncm_opts->net = gether_setup_default();
+		/* MOTODESK-2239 Use ncm interface name. suzh1 2021-02-05 */
+		ncm_opts->net = gether_setup_name_default("ncm");
 		if (IS_ERR(ncm_opts->net)) {
 			status = PTR_ERR(ncm_opts->net);
 			mutex_unlock(&ncm_opts->lock);
@@ -1605,6 +1606,10 @@ netdev_cleanup:
 	gether_cleanup(netdev_priv(ncm_opts->net));
 
 error:
+	/* Begin MOTODESK-2239 Add OS descriptor support. suzh1 2021-02-05 */
+	kfree(f->os_desc_table);
+	f->os_desc_n = 0;
+	/* End MOTODESK-2239 */
 	ERROR(cdev, "%s: can't bind, err %d\n", f->name, status);
 
 	return status;
