@@ -30,7 +30,7 @@
 
 #define MSM_VIDC_DRV_NAME "msm_vidc_driver"
 
-/* kernel/msm-4.19 */
+/* kernel/motorola/sm8250 */
 #define MSM_VIDC_VERSION     ((0 << 16) + (4 << 8) + 19)
 
 #define MAX_DEBUGFS_NAME 50
