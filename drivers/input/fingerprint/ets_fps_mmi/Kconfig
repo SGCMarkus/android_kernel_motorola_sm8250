@@ -1,0 +1,29 @@
+config FINGERPRINT_EGISTEC_FPS_MMI
+	tristate "EGISTEC FPS support"
+
+config INPUT_EGISTEC_FPS_NAVI
+	bool "EGISTEC FPS navigation support"
+	depends on FINGERPRINT_EGISTEC_FPS_MMI
+
+config INPUT_EGISTEC_FPS_NAVI_HORIZON
+	bool "EGISTEC FPS horizontal navigation support"
+	depends on INPUT_EGISTEC_FPS_NAVI
+
+config INPUT_EGISTEC_FPS_NAVI_VERTICAL
+	bool "EGISTEC FPS vertical navigation support"
+	depends on INPUT_EGISTEC_FPS_NAVI
+
+config INPUT_EGISTEC_FPS_POSE
+	int "EGISTEC FPS orientation"
+	depends on INPUT_EGISTEC_FPS_NAVI
+	default 270
+	help
+		"Supported values: 0, 90, 180, 270"
+
+config NAV_DOUBLE_TAP
+	bool "EGISTEC FPS double tap support"
+	depends on INPUT_EGISTEC_FPS_NAVI
+
+config EGIS_DISPLAY_SPEED_UP
+	bool "EGISTEC FPS display speed up"
+	depends on FINGERPRINT_EGISTEC_FPS_MMI

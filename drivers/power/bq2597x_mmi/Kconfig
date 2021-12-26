@@ -1,0 +1,17 @@
+config BQ2597X_MMI
+        tristate "BQ2597X MMI charger"
+        default n
+        help
+         Say Y here if you have a BQ2597X MMI charger compatible
+         device connected.
+
+         This driver can also be built as a module.  If so, the module
+         will be called bq2597x_mmi.
+
+config BQ2597X_DUAL
+	bool "BQ2597X dual support"
+	default n
+	depends on BQ2597X_MMI
+	help
+         Say Y here if you have a BQ2597X dual support charger compatible
+         device connected.

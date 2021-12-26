@@ -1,0 +1,15 @@
+KERNEL_CAMERA_DRIVER_PATH ?= $(src)/../../../../../../../techpack/camera/drivers
+
+ccflags-y += -DCONFIG_SPECTRA_CAMERA=1
+ccflags-y += -I$(KERNEL_CAMERA_DRIVER_PATH)/../include
+ccflags-y += -I$(KERNEL_CAMERA_DRIVER_PATH)/../include/uapi
+ccflags-y += -I$(KERNEL_CAMERA_DRIVER_PATH)/../include/uapi/camera
+ccflags-y += -I$(KERNEL_CAMERA_DRIVER_PATH)/cam_utils
+ccflags-y += -I$(KERNEL_CAMERA_DRIVER_PATH)/cam_cpas/include
+ccflags-y += -I$(KERNEL_CAMERA_DRIVER_PATH)/cam_sensor_module/cam_sensor_io
+ccflags-y += -I$(KERNEL_CAMERA_DRIVER_PATH)/cam_sensor_module/cam_sensor_utils
+ccflags-y += -I$(KERNEL_CAMERA_DRIVER_PATH)/cam_sensor_module/cam_cci
+ccflags-y += -I$(KERNEL_CAMERA_DRIVER_PATH)/cam_req_mgr
+ccflags-y += -I$(KERNEL_CAMERA_DRIVER_PATH)/cam_smmu
+
+obj-$(CONFIG_CAMERA_CCI_INTF)	+= cci_intf.o

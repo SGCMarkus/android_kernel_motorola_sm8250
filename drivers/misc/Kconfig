@@ -638,6 +638,39 @@ source "drivers/misc/ocxl/Kconfig"
 source "drivers/misc/cardreader/Kconfig"
 source "drivers/misc/fpr_FingerprintCard/Kconfig"
 source "drivers/misc/qrc/Kconfig"
+source "drivers/misc/awinic/Kconfig"
+source "drivers/misc/mmi_sys_temp/Kconfig"
+source "drivers/misc/sx933x/Kconfig"
+source "drivers/misc/sx937x/Kconfig"
+source "drivers/misc/utag/Kconfig"
+
+config CAPSENSE_ATTACH_CAL
+	bool "Enable cap-sensor attach calibration"
+	depends on SARSENSOR_SX933X || SARSENSOR_SX937X
+	help
+	  Enable Cap-sensor calibration when attached.
+
+config CAPSENSE_FLIP_CAL
+	bool "Enable cap-sensor flip calibration"
+	depends on SARSENSOR_SX933X || SARSENSOR_SX937X
+	help
+	  Enable Cap-sensor calibration when flipped.
+
+config CAPSENSE_USB_CAL
+	bool "Enable cap-sensor usb calibration"
+	depends on SARSENSOR_SX933X || SARSENSOR_SX937X
+	help
+	  Enable Cap-sensor calibration when usb plug.
+
+	  To use CAPSENSE_USB_CAL open the feature that it can enable cap-sensor calibration
+	  when usb plug.
+
+config CAPSENSE_HEADSET_STATE
+	bool "Enable cap-sensor headset state"
+	depends on SARSENSOR_SX933X || SARSENSOR_SX937X
+	help
+	  Enable Cap-sensor headset state.
+
 endmenu
 
 config OKL4_USER_VIPC

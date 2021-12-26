@@ -1,0 +1,7 @@
+mmi_parallel_charger_qc3p-objs += mmi_charger_class.o
+mmi_parallel_charger_qc3p-objs += mmi_charger_core.o
+mmi_parallel_charger_qc3p-objs += mmi_charger_pump_policy.o
+mmi_parallel_charger_qc3p-objs += bq2597x_charger.o
+mmi_parallel_charger_qc3p-objs += qpnp_pmic_charger.o
+
+obj-$(CONFIG_MMI_PARALLEL_CHARGER_QC3P) += mmi_parallel_charger_qc3p.o

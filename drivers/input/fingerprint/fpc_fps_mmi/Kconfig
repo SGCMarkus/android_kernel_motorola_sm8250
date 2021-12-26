@@ -1,0 +1,6 @@
+config FINGERPRINT_FPC_TEE_MMI
+	tristate "FPC1020 Fingerprint sensor device driver"
+
+config INPUT_MISC_FPC1020_SAVE_TO_CLASS_DEVICE
+	bool "FPC1020 save to class device"
+	depends on FINGERPRINT_FPC_TEE_MMI

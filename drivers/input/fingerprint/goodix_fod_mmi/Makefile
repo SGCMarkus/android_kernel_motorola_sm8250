@@ -1,0 +1,18 @@
+# add -Wall to try to catch everything we can.
+ccflags-y += -I$(src)
+
+ifneq ($(filter m y,$(CONFIG_MMI_RELAY)),)
+	ccflags-y += -DMMI_RELAY_MODULE
+endif
+
+ifneq ($(filter m y,$(CONFIG_INPUT_MISC_GOODIX_FOD_SOFTDEP)),)
+	ccflags-y += -DSOFTDEP_GPIO_PCAL6408
+endif
+
+#ifneq ($(filter banks%, $(TARGET_PRODUCT)),)
+#	ccflags-y += -DSOFTDEP_GPIO_PCAL6408
+#endif
+
+goodix_fod_mmi-y += gf_spi.o netlink.o platform.o
+
+obj-$(CONFIG_FINGERPRINT_GOODIX_FOD_MMI) += goodix_fod_mmi.o
