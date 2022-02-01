@@ -217,11 +217,13 @@ struct nvt_ts_data {
 #endif
 #ifdef NVT_SENSOR_EN
 	DECLARE_BITMAP(gesture_bits, DATA_PROTOCOL);
+#endif
 #ifdef NOVATECH_PEN_NOTIFIER
 	bool fw_ready_flag;
 	int nvt_pen_detect_flag;
 	struct notifier_block pen_notif;
 #endif
+#ifdef NVT_SENSOR_EN
 	struct nvt_sensor_platform_data *sensor_pdata;
 #endif
 #ifdef PALM_GESTURE
