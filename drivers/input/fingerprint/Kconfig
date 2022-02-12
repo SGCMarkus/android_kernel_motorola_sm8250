@@ -17,3 +17,4 @@ source "drivers/input/fingerprint/fpc_fps_mmi/Kconfig"
 source "drivers/input/fingerprint/goodix_fod_mmi/Kconfig"
 
 endif
+
