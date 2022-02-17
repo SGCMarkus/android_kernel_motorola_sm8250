@@ -1,9 +1,5 @@
-ifneq ($(filter m y, $(CONFIG_PANEL_NOTIFICATIONS)),)
-	ccflags-y += -DCONFIG_PANEL_NOTIFICATIONS
-endif
-
 ifneq ($(filter m y, $(CONFIG_DRM_DYNAMIC_REFRESH_RATE)),)
-	ccflags -y += -DCONFIG_DRM_DYNAMIC_REFRESH_RATE
+	ccflags-y += -DCONFIG_DRM_DYNAMIC_REFRESH_RATE
 endif
 
 ifneq ($(filter m y, $(CONFIG_TOUCHCLASS_MMI_DEBUG_INFO)),)

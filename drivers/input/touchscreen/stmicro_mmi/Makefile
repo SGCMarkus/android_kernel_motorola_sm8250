@@ -27,4 +27,4 @@ ifneq ($(filter m y,$(CONFIG_INPUT_TOUCHSCREEN_MMI)),)
 	endif
 endif
 
-obj-$(TOUCHSCREEN_FTS_TS) := stmicro_mmi.o
+obj-$(CONFIG_TOUCHSCREEN_FTS_TS) := stmicro_mmi.o

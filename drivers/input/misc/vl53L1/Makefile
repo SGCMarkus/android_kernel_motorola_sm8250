@@ -22,7 +22,6 @@ ifneq ($(filter m y,$(CONFIG_INPUT_MISC_PMIC_WL2864C)),)
 	ccflags-y += -DTOF_USE_PMIC_WL2864C
 endif
 
-obj-(CONFIG_INPUT_STMVL53L1)	+= stmvl53l1.o
 stmvl53l1-objs		:= stmvl53l1_module.o stmvl53l1_module-i2c.o
 stmvl53l1-objs		+= stmvl53l1_i2c.o stmvl53l1_ipp_nl.o stmvl53l1_log.o
 stmvl53l1-objs		+= src/vl53l1_api.o src/vl53l1_api_core.o
@@ -35,3 +34,4 @@ stmvl53l1-objs		+= src/vl53l1_zone_presets.o src/vl53l1_nvm.o
 stmvl53l1-objs		+= src/vl53l1_api_debug.o src/vl53l1_core_support.o
 stmvl53l1-objs		+= src/vl53l1_wait.o ipp/ipp_linux.o
 stmvl53l1-objs		+= src/vl53l1_nvm_debug.o
+obj-$(CONFIG_INPUT_STMVL53L1)	+= stmvl53l1.o
