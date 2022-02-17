@@ -1671,6 +1671,8 @@ if CRYPTO
 source "arch/arm64/crypto/Kconfig"
 endif
 
+source "techpack/Kconfig"
+
 config AF_NOISE_ELIMINATION
 	bool "For elimnating AF resonance noise"
 	default n
