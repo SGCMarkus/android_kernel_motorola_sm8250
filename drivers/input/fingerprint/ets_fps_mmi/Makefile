@@ -18,7 +18,7 @@ ifeq ($(TARGET_BUILD_VARIANT),userdebug)
 	ccflags-y += -DFP_SPI_DEBUG
 endif
 
-obj-$(FINGERPRINT_EGISTEC_FPS_MMI) += ets_fps_mmi.o
+obj-$(CONFIG_FINGERPRINT_EGISTEC_FPS_MMI) += ets_fps_mmi.o
 
 ifneq ($(filter 0 90 180 270,$(CONFIG_INPUT_EGISTEC_FPS_POSE)),)
 	ccflags-y += -DCONFIG_INPUT_EGISTEC_FPS_POSE=$(CONFIG_INPUT_EGISTEC_FPS_POSE)
