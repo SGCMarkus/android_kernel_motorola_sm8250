@@ -1,1 +1,1 @@
-obj-$(CONFIG_MISC_AW8695) += aw8695/
+obj-$(CONFIG_AW8695_HAPTIC) += aw8695/
