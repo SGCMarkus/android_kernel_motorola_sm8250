@@ -4892,9 +4892,6 @@ typedef enum {
 /* Extend 6ghz channel measure time */
 #define WMI_SCAN_FLAG_EXT_6GHZ_EXTEND_MEASURE_TIME    0x00000400
 
-/* Force unicast address in RA */
-#define WMI_SCAN_FLAG_EXT_FORCE_UNICAST_RA            0x00000800
-
 /**
  * Currently passive scan has higher priority than beacon and
  * beacon miss would happen irrespective of dwell time.
