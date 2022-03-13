@@ -1251,6 +1251,7 @@ static void smblib_uusb_removal(struct smb_charger *chg)
 	}
 #endif
 	vote(chg->usb_icl_votable, HVDCP2_ICL_VOTER, false, 0);
+	vote(chg->usb_icl_votable, HVDCP2_12V_ICL_VOTER, false, 0);
 	vote(chg->usb_icl_votable, CHG_TERMINATION_VOTER, false, 0);
 	vote(chg->usb_icl_votable, THERMAL_THROTTLE_VOTER, false, 0);
 	vote(chg->limited_irq_disable_votable, CHARGER_TYPE_VOTER,
@@ -2711,6 +2712,8 @@ int smblib_dp_dm(struct smb_charger *chg, int val)
 		rc = smblib_force_vbus_voltage(chg, FORCE_5V_BIT);
 		if (rc < 0)
 			pr_err("Failed to force 5V\n");
+
+		vote(chg->usb_icl_votable, HVDCP2_12V_ICL_VOTER, false, 0);
 		break;
 	case POWER_SUPPLY_DP_DM_FORCE_9V:
 		if (chg->qc2_unsupported_voltage == QC2_NON_COMPLIANT_9V) {
@@ -2736,6 +2739,8 @@ int smblib_dp_dm(struct smb_charger *chg, int val)
 		rc = smblib_force_vbus_voltage(chg, FORCE_9V_BIT);
 		if (rc < 0)
 			pr_err("Failed to force 9V\n");
+
+		vote(chg->usb_icl_votable, HVDCP2_12V_ICL_VOTER, false, 0);
 		break;
 	case POWER_SUPPLY_DP_DM_FORCE_12V:
 		if (chg->qc2_unsupported_voltage == QC2_NON_COMPLIANT_12V) {
@@ -2752,6 +2757,8 @@ int smblib_dp_dm(struct smb_charger *chg, int val)
 		}
 
 		if ((stat & QC_9V_BIT) || (stat & QC_5V_BIT)) {
+			vote(chg->usb_icl_votable, HVDCP2_12V_ICL_VOTER, true,
+					chg->chg_param.hvdcp2_12v_max_icl_ua);
 			/* Force 1A ICL before requesting higher voltage */
 			vote(chg->usb_icl_votable, HVDCP2_ICL_VOTER,
 					true, 1000000);
@@ -5924,7 +5931,6 @@ static void smblib_handle_hvdcp_check_timeout(struct smb_charger *chg,
 	u32 hvdcp_ua = 0;
 
 	if (rising) {
-
 		if (qc_charger) {
 			hvdcp_ua = (chg->real_charger_type ==
 					POWER_SUPPLY_TYPE_USB_HVDCP) ?
@@ -7011,6 +7017,7 @@ static void typec_src_removal(struct smb_charger *chg)
 #endif
 	vote(chg->usb_icl_votable, CTM_VOTER, false, 0);
 	vote(chg->usb_icl_votable, HVDCP2_ICL_VOTER, false, 0);
+	vote(chg->usb_icl_votable, HVDCP2_12V_ICL_VOTER, false, 0);
 	vote(chg->usb_icl_votable, CHG_TERMINATION_VOTER, false, 0);
 	vote(chg->usb_icl_votable, THERMAL_THROTTLE_VOTER, false, 0);
 	if (!chg->moisture_present)
