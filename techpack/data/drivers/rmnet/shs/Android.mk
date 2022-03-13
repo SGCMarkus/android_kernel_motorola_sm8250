@@ -1,4 +1,4 @@
-ifeq ($(filter $(TARGET_PRODUCT), qssi),)
+ifneq ($(TARGET_PRODUCT),qssi)
 #Not build for MSI
 ifeq ($(findstring msi, $(TARGET_PRODUCT)),)
 RMNET_SHS_DLKM_PLATFORMS_LIST := msmnile
