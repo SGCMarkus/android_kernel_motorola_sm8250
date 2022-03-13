@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
- * Copyright (c) 2017-2020, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2017-2021, The Linux Foundation. All rights reserved.
  */
 
 #include <linux/debugfs.h>
@@ -1879,6 +1879,7 @@ static struct msm_vidc_platform_data default_data = {
 	.vpu_ver = VPU_VERSION_IRIS2,
 	.num_vpp_pipes = 0x4,
 	.ubwc_config = 0x0,
+	.max_inst_count = MAX_SUPPORTED_INSTANCES,
 };
 
 static struct msm_vidc_platform_data lito_data = {
@@ -1899,6 +1900,7 @@ static struct msm_vidc_platform_data lito_data = {
 	.codecs_count = ARRAY_SIZE(default_codecs),
 	.codec_caps = lito_capabilities_v0,
 	.codec_caps_count = ARRAY_SIZE(lito_capabilities_v0),
+	.max_inst_count = MAX_SUPPORTED_INSTANCES,
 };
 
 static struct msm_vidc_platform_data kona_data = {
@@ -1919,6 +1921,28 @@ static struct msm_vidc_platform_data kona_data = {
 	.codecs_count = ARRAY_SIZE(default_codecs),
 	.codec_caps = kona_capabilities,
 	.codec_caps_count = ARRAY_SIZE(kona_capabilities),
+	.max_inst_count = MAX_SUPPORTED_INSTANCES,
+};
+
+static struct msm_vidc_platform_data lagoon_data = {
+	.codec_data = lagoon_codec_data,
+	.codec_data_length =  ARRAY_SIZE(lagoon_codec_data),
+	.common_data = lagoon_common_data_v0,
+	.common_data_length =  ARRAY_SIZE(lagoon_common_data_v0),
+	.csc_data.vpe_csc_custom_bias_coeff = vpe_csc_custom_bias_coeff,
+	.csc_data.vpe_csc_custom_matrix_coeff = vpe_csc_custom_matrix_coeff,
+	.csc_data.vpe_csc_custom_limit_coeff = vpe_csc_custom_limit_coeff,
+	.efuse_data = lagoon_efuse_data,
+	.efuse_data_length = ARRAY_SIZE(lagoon_efuse_data),
+	.sku_version = 0,
+	.vpu_ver = VPU_VERSION_IRIS2_1,
+	.num_vpp_pipes = 0x1,
+	.ubwc_config = 0x0,
+	.codecs = lagoon_codecs,
+	.codecs_count = ARRAY_SIZE(lagoon_codecs),
+	.codec_caps = lagoon_capabilities_v0,
+	.codec_caps_count = ARRAY_SIZE(lagoon_capabilities_v0),
+	.max_inst_count = MAX_SUPPORTED_INSTANCES,
 };
 
 static struct msm_vidc_platform_data lagoon_data = {
@@ -1955,6 +1979,49 @@ static struct msm_vidc_platform_data sm6150_data = {
 	.vpu_ver = VPU_VERSION_AR50,
 	.num_vpp_pipes = 0x1,
 	.ubwc_config = 0x0,
+	.max_inst_count = MAX_SUPPORTED_INSTANCES,
+};
+
+static struct msm_vidc_platform_data bengal_data = {
+	.codec_data = bengal_codec_data,
+	.codec_data_length =  ARRAY_SIZE(bengal_codec_data),
+	.common_data = bengal_common_data_v0,
+	.common_data_length =  ARRAY_SIZE(bengal_common_data_v0),
+	.csc_data.vpe_csc_custom_bias_coeff = vpe_csc_custom_bias_coeff,
+	.csc_data.vpe_csc_custom_matrix_coeff = vpe_csc_custom_matrix_coeff,
+	.csc_data.vpe_csc_custom_limit_coeff = vpe_csc_custom_limit_coeff,
+	.efuse_data = NULL,
+	.efuse_data_length = 0,
+	.sku_version = 0,
+	.vpu_ver = VPU_VERSION_AR50_LITE,
+	.num_vpp_pipes = 0x1,
+	.ubwc_config = 0x0,
+	.codecs = bengal_codecs,
+	.codecs_count = ARRAY_SIZE(bengal_codecs),
+	.codec_caps = bengal_capabilities_v0,
+	.codec_caps_count = ARRAY_SIZE(bengal_capabilities_v0),
+	.max_inst_count = MAX_SUPPORTED_INSTANCES,
+};
+
+static struct msm_vidc_platform_data scuba_data = {
+	.codec_data = scuba_codec_data,
+	.codec_data_length =  ARRAY_SIZE(scuba_codec_data),
+	.common_data = scuba_common_data,
+	.common_data_length =  ARRAY_SIZE(scuba_common_data),
+	.csc_data.vpe_csc_custom_bias_coeff = vpe_csc_custom_bias_coeff,
+	.csc_data.vpe_csc_custom_matrix_coeff = vpe_csc_custom_matrix_coeff,
+	.csc_data.vpe_csc_custom_limit_coeff = vpe_csc_custom_limit_coeff,
+	.efuse_data = NULL,
+	.efuse_data_length = 0,
+	.sku_version = 0,
+	.vpu_ver = VPU_VERSION_AR50_LITE,
+	.num_vpp_pipes = 0x1,
+	.ubwc_config = 0x0,
+	.codecs = scuba_codecs,
+	.codecs_count = ARRAY_SIZE(scuba_codecs),
+	.codec_caps = scuba_capabilities,
+	.codec_caps_count = ARRAY_SIZE(scuba_capabilities),
+	.max_inst_count = MAX_SUPPORTED_INSTANCES,
 };
 
 static struct msm_vidc_platform_data bengal_data = {
@@ -2011,6 +2078,7 @@ static struct msm_vidc_platform_data sm8150_data = {
 	.vpu_ver = VPU_VERSION_IRIS1,
 	.num_vpp_pipes = 0x2,
 	.ubwc_config = 0x0,
+	.max_inst_count = MAX_SUPPORTED_INSTANCES,
 };
 
 static struct msm_vidc_platform_data sdm845_data = {
@@ -2027,6 +2095,7 @@ static struct msm_vidc_platform_data sdm845_data = {
 	.vpu_ver = VPU_VERSION_AR50,
 	.num_vpp_pipes = 0x1,
 	.ubwc_config = 0x0,
+	.max_inst_count = MAX_SUPPORTED_INSTANCES,
 };
 
 static struct msm_vidc_platform_data sdm670_data = {
@@ -2043,6 +2112,7 @@ static struct msm_vidc_platform_data sdm670_data = {
 	.vpu_ver = VPU_VERSION_AR50,
 	.num_vpp_pipes = 0x1,
 	.ubwc_config = 0x0,
+	.max_inst_count = MAX_SUPPORTED_INSTANCES,
 };
 
 static const struct of_device_id msm_vidc_dt_match[] = {
@@ -2052,6 +2122,10 @@ static const struct of_device_id msm_vidc_dt_match[] = {
 	},
 	{
 		.compatible = "qcom,kona-vidc",
+		.data = &kona_data,
+	},
+	{
+		.compatible = "qcom,qcs8250-vidc",
 		.data = &kona_data,
 	},
 	{
@@ -2205,6 +2279,21 @@ void *vidc_get_drv_data(struct device *dev)
 		d_vpr_h("DDR Type 0x%x hbb 0x%x\n",
 			ddr_type, driver_data->ubwc_config ?
 			driver_data->ubwc_config->highest_bank_bit : -1);
+	} else if (!strcmp(match->compatible, "qcom,qcs8250-vidc")) {
+		ddr_type = of_fdt_get_ddrtype();
+		if (ddr_type == -ENOENT)
+			d_vpr_e("Failed to get ddr type, use LPDDR5\n");
+
+		if (driver_data->ubwc_config &&
+			(ddr_type == DDR_TYPE_LPDDR4 ||
+			 ddr_type == DDR_TYPE_LPDDR4X))
+			driver_data->ubwc_config->highest_bank_bit = 0xf;
+
+		d_vpr_h("DDR Type 0x%x hbb 0x%x\n",
+			ddr_type, driver_data->ubwc_config ?
+			driver_data->ubwc_config->highest_bank_bit : -1);
+
+		driver_data->max_inst_count = MAX_SUPPORTED_INSTANCES_24;
 	} else if (!strcmp(match->compatible, "qcom,bengal-vidc")) {
 		rc = msm_vidc_read_rank(driver_data, dev);
 		if (rc) {
