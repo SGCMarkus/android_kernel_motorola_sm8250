@@ -1945,26 +1945,6 @@ static struct msm_vidc_platform_data lagoon_data = {
 	.max_inst_count = MAX_SUPPORTED_INSTANCES,
 };
 
-static struct msm_vidc_platform_data lagoon_data = {
-	.codec_data = lagoon_codec_data,
-	.codec_data_length =  ARRAY_SIZE(lagoon_codec_data),
-	.common_data = lagoon_common_data_v0,
-	.common_data_length =  ARRAY_SIZE(lagoon_common_data_v0),
-	.csc_data.vpe_csc_custom_bias_coeff = vpe_csc_custom_bias_coeff,
-	.csc_data.vpe_csc_custom_matrix_coeff = vpe_csc_custom_matrix_coeff,
-	.csc_data.vpe_csc_custom_limit_coeff = vpe_csc_custom_limit_coeff,
-	.efuse_data = lagoon_efuse_data,
-	.efuse_data_length = ARRAY_SIZE(lagoon_efuse_data),
-	.sku_version = 0,
-	.vpu_ver = VPU_VERSION_IRIS2_1,
-	.num_vpp_pipes = 0x1,
-	.ubwc_config = 0x0,
-	.codecs = lagoon_codecs,
-	.codecs_count = ARRAY_SIZE(lagoon_codecs),
-	.codec_caps = lagoon_capabilities_v0,
-	.codec_caps_count = ARRAY_SIZE(lagoon_capabilities_v0),
-};
-
 static struct msm_vidc_platform_data sm6150_data = {
 	.codec_data = sm6150_codec_data,
 	.codec_data_length =  ARRAY_SIZE(sm6150_codec_data),
@@ -2022,46 +2002,6 @@ static struct msm_vidc_platform_data scuba_data = {
 	.codec_caps = scuba_capabilities,
 	.codec_caps_count = ARRAY_SIZE(scuba_capabilities),
 	.max_inst_count = MAX_SUPPORTED_INSTANCES,
-};
-
-static struct msm_vidc_platform_data bengal_data = {
-	.codec_data = bengal_codec_data,
-	.codec_data_length =  ARRAY_SIZE(bengal_codec_data),
-	.common_data = bengal_common_data_v0,
-	.common_data_length =  ARRAY_SIZE(bengal_common_data_v0),
-	.csc_data.vpe_csc_custom_bias_coeff = vpe_csc_custom_bias_coeff,
-	.csc_data.vpe_csc_custom_matrix_coeff = vpe_csc_custom_matrix_coeff,
-	.csc_data.vpe_csc_custom_limit_coeff = vpe_csc_custom_limit_coeff,
-	.efuse_data = NULL,
-	.efuse_data_length = 0,
-	.sku_version = 0,
-	.vpu_ver = VPU_VERSION_AR50_LITE,
-	.num_vpp_pipes = 0x1,
-	.ubwc_config = 0x0,
-	.codecs = bengal_codecs,
-	.codecs_count = ARRAY_SIZE(bengal_codecs),
-	.codec_caps = bengal_capabilities_v0,
-	.codec_caps_count = ARRAY_SIZE(bengal_capabilities_v0),
-};
-
-static struct msm_vidc_platform_data scuba_data = {
-	.codec_data = scuba_codec_data,
-	.codec_data_length =  ARRAY_SIZE(scuba_codec_data),
-	.common_data = scuba_common_data,
-	.common_data_length =  ARRAY_SIZE(scuba_common_data),
-	.csc_data.vpe_csc_custom_bias_coeff = vpe_csc_custom_bias_coeff,
-	.csc_data.vpe_csc_custom_matrix_coeff = vpe_csc_custom_matrix_coeff,
-	.csc_data.vpe_csc_custom_limit_coeff = vpe_csc_custom_limit_coeff,
-	.efuse_data = NULL,
-	.efuse_data_length = 0,
-	.sku_version = 0,
-	.vpu_ver = VPU_VERSION_AR50_LITE,
-	.num_vpp_pipes = 0x1,
-	.ubwc_config = 0x0,
-	.codecs = scuba_codecs,
-	.codecs_count = ARRAY_SIZE(scuba_codecs),
-	.codec_caps = scuba_capabilities,
-	.codec_caps_count = ARRAY_SIZE(scuba_capabilities),
 };
 
 static struct msm_vidc_platform_data sm8150_data = {
