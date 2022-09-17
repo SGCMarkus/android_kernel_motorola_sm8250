@@ -815,7 +815,7 @@ static int cyttsp5_check_firmware_config_version(struct device *dev, u16 fw_conf
 
 static int cyttsp5_check_firmware_version_builtin(struct device *dev, const struct firmware *fw)
 {
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 	struct cyttsp5_core_data *cd = dev_get_drvdata(dev);
 #endif
 	struct cyttsp5_loader_data *ld = cyttsp5_get_loader_data(dev);
@@ -832,7 +832,7 @@ static int cyttsp5_check_firmware_version_builtin(struct device *dev, const stru
 		return CYTTSP5_AUTO_LOAD_FOR_CORRUPTED_FW;
 	}
 
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 	if(cd->force_fw_upgrade == 1) {
 		cd->force_fw_upgrade = 0;
 		return 1;
@@ -1106,7 +1106,7 @@ static __maybe_unused char *generate_firmware_filename(struct device *dev)
 
 static int upgrade_firmware_from_builtin(struct device *dev)
 {
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 	struct cyttsp5_core_data *cd =  dev_get_drvdata(dev);
 #endif
 	struct cyttsp5_loader_data *ld = cyttsp5_get_loader_data(dev);
@@ -1122,7 +1122,7 @@ retry_bl:
 		"%s: Enabling firmware class loader built-in\n",
 		__func__);
 
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 	filename = kzalloc(CYTTSP5_FIRMWARE_NAME_MAX_LEN, GFP_KERNEL);
 	if (!filename)
 		return -ENOMEM;
@@ -1758,7 +1758,7 @@ static DEVICE_ATTR(manual_upgrade, S_IWUSR,
 	NULL, cyttsp5_manual_upgrade_store);
 #endif
 
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 static int cyttsp5_loader_firmware_update(struct device *dev,
             char *fwname)
 {
@@ -1771,7 +1771,7 @@ static int cyttsp5_loader_firmware_update(struct device *dev,
 
 static int cyttsp5_loader_probe(struct device *dev, void **data)
 {
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 	struct cyttsp5_core_data *cd =  dev_get_drvdata(dev);
 #endif
 	struct cyttsp5_loader_data *ld;
@@ -1860,7 +1860,7 @@ static int cyttsp5_loader_probe(struct device *dev, void **data)
 	mutex_init(&ld->config_lock);
 #endif
 
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 	cd->firmware_update = cyttsp5_loader_firmware_update;
 #else
 #ifdef UPGRADE_FW_AND_CONFIG_IN_PROBE

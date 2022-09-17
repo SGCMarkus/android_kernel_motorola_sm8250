@@ -2312,7 +2312,7 @@ static int goodix_ts_probe(struct platform_device *pdev)
 		goto gpio_err;
 	}
 
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 	ts_info("%s:goodix_ts_mmi_dev_register",__func__);
 	r = goodix_ts_mmi_dev_register(pdev);
 	if (r) {
@@ -2343,7 +2343,7 @@ static int goodix_ts_probe(struct platform_device *pdev)
 later_thread_err:
 	goodix_gsx_gesture_exit();
 ts_mmi_dev_err:
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 	goodix_ts_mmi_dev_unregister(pdev);
 fw_update_init_err:
 #endif

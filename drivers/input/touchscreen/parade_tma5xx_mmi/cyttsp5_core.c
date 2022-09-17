@@ -5293,7 +5293,7 @@ static int cyttsp5_pm_notifier(struct notifier_block *nb,
 #endif
 
 const struct dev_pm_ops cyttsp5_pm_ops = {
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 	SET_SYSTEM_SLEEP_PM_OPS(cyttsp5_core_mmi_suspend, cyttsp5_core_mmi_resume)
 #else
 	SET_SYSTEM_SLEEP_PM_OPS(cyttsp5_core_suspend, cyttsp5_core_resume)
@@ -7008,7 +7008,7 @@ int cyttsp5_probe(const struct cyttsp5_bus_ops *ops, struct device *dev,
 		goto error_startup_btn;
 	}
 
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 	dev_info(dev, "%s:cyttsp5_ts_mmi_dev_register",__func__);
 	rc = cyttsp5_ts_mmi_dev_register(dev);
 	if (rc) {
@@ -7118,7 +7118,7 @@ int cyttsp5_release(struct cyttsp5_core_data *cd)
 
 	cyttsp5_stop_wd_timer(cd);
 
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 	dev_info(dev, "%s:cyttsp5_ts_mmi_dev_register", __func__);
 	cyttsp5_ts_mmi_dev_unregister(dev);
 #endif

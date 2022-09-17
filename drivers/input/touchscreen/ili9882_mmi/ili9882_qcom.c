@@ -30,7 +30,7 @@ enum touch_state {
 	TOUCH_LOW_POWER_STATE,
 };
 
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 extern int ili_mmi_init(struct ilitek_ts_data *ts_data, bool enable);
 #endif
 
@@ -934,7 +934,7 @@ static int ilitek_plat_probe(void)
 	pen_detection_register_client(&ilits->pen_notif);
 #endif
 
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 	ili_mmi_init(ilits, true);
 #endif
 

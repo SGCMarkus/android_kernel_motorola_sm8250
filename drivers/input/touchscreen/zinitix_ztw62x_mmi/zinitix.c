@@ -73,7 +73,7 @@ u8 m_FirmwareIdx = 0;
 #define TSP_HW_ID_INDEX_0 1
 #define TSP_HW_ID_INDEX_1 2
 
-#ifndef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if !IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 extern char *saved_command_line;
 #endif
 
@@ -1614,14 +1614,14 @@ static bool init_touch(struct bt541_ts_info *info)
 	u8 checksum_err;
 #endif
 	int retry_cnt = 0;
-#ifndef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if !IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 	char* productionMode = "androidboot.bsp=2";
 #endif
 	char* checkMode = NULL;
 
 	dev_info(&client->dev, "init_touch: B\n");
 
-#ifndef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if !IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 	checkMode = strstr(saved_command_line, productionMode);
 #endif
 retry_init:
@@ -2976,7 +2976,7 @@ retry:
 #define MAX_FW_PATH 255
 #define TSP_FW_FILENAME "zinitix_fw.bin"
 
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 static void fw_update(void *device_data)
 {
 	struct bt541_ts_info *info = (struct bt541_ts_info *)device_data;
@@ -6011,7 +6011,7 @@ static int bt541_ts_probe(struct i2c_client *client,
 	enable_irq_wake(misc_info->irq);
 #endif
 
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 	dev_info(&client->dev, "%s:zinitix_ts_mmi_dev_register", __func__);
 	ret = zinitix_ts_mmi_dev_register(&client->dev);
 	if (ret) {
@@ -6110,7 +6110,7 @@ static int bt541_ts_remove(struct i2c_client *client)
 	destroy_workqueue(esd_tmr_workqueue);
 #endif
 
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 	dev_info(&client->dev, "%s:zinitix_ts_mmi_dev_unregister", __func__);
 	zinitix_ts_mmi_dev_unregister(&client->dev);
 #endif

@@ -40,7 +40,7 @@
 *****************************************************************************/
 #define FTS_FW_REQUEST_SUPPORT                      1
 /* Example: focaltech_ts_fw_tianma.bin */
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 #define FTS_FW_NAME_PREX_WITH_REQUEST               ""
 #else
 #define FTS_FW_NAME_PREX_WITH_REQUEST               "focaltech_ts_fw_"
@@ -49,7 +49,7 @@
 /*****************************************************************************
 * Global variable or extern global variabls/functions
 *****************************************************************************/
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 u8 fw_file[] = {
 };
 
@@ -1913,7 +1913,7 @@ static int fts_get_fw_file_via_request_firmware(struct fts_upgrade *upg)
         return -EINVAL;
     }
 
-#ifndef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if !IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
     if (fts_data->panel_supplier) {
 	    FTS_INFO("fts_data->panel_supplier=%s\n", fts_data->panel_supplier);
         snprintf(fwname, FILE_NAME_LENGTH, "%s%s.bin", \

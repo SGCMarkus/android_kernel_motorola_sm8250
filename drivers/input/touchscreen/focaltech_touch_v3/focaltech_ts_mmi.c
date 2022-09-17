@@ -16,7 +16,7 @@
 #include <linux/regulator/consumer.h>
 #include "focaltech_core.h"
 
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 //extern int ts_mmi_dev_register(struct device *parent, struct ts_mmi_methods *mdata);
 //extern void ts_mmi_dev_unregister(struct device *parent);
 #endif

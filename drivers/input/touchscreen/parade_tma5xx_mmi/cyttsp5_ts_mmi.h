@@ -16,7 +16,7 @@
 #include <linux/touchscreen_mmi.h>
 #include <linux/mmi_wake_lock.h>
 
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 int cyttsp5_ts_mmi_dev_register(struct device *dev);
 void cyttsp5_ts_mmi_dev_unregister(struct device *dev);
 #else

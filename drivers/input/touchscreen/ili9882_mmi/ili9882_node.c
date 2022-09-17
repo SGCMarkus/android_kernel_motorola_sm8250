@@ -111,7 +111,7 @@ static unsigned char g_user_buf[USER_STR_BUFF] = {0};
 #define ILI_SPI_NAME_TM "ilitek_tm"
 #define ILI_SPI_NAME_CSOT "ilitek_csot"
 #define ILI_SPI_NAME_TXD "ilitek_txd"
-#ifndef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if !IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 static struct class *touchscreen_class;
 static struct device *touchscreen_class_dev;
 #endif
@@ -2713,7 +2713,7 @@ static int netlink_init(void)
 }
 #endif
 
-#ifndef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if !IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 static ssize_t path_show(struct device *pDevice, struct device_attribute *pAttr, char *pBuf)
 {
 	ssize_t blen;
@@ -2834,7 +2834,7 @@ void ili_node_init(void)
 #if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 10, 0))
 	netlink_init();
 #endif
-#ifndef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if !IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 	ilitek_sys_init();
 #endif
 }

@@ -45,7 +45,7 @@
 #include "synaptics_touchcom_func_reflash.h"
 #include <linux/mmi_wake_lock.h>
 
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 extern int syna_ts_mmi_dev_register(struct syna_tcm *tcm);
 extern void syna_ts_mmi_dev_unregister(struct syna_tcm *tcm);
 #endif
@@ -1795,7 +1795,7 @@ static int syna_dev_probe(struct platform_device *pdev)
 		SYNAPTICS_TCM_DRIVER_VERSION,
 		SYNAPTICS_TCM_DRIVER_SUBVER);
 
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 	syna_ts_mmi_dev_register(tcm);
 #endif
 
@@ -1838,7 +1838,7 @@ static int syna_dev_remove(struct platform_device *pdev)
 		return 0;
 	}
 
-#ifdef CONFIG_INPUT_TOUCHSCREEN_MMI
+#if IS_ENABLED(CONFIG_INPUT_TOUCHSCREEN_MMI)
 	syna_ts_mmi_dev_unregister(tcm);
 #endif
 
