@@ -49,6 +49,9 @@ struct pil_map_fw_info {
 	phys_addr_t base_addr;
 	struct device *dev;
 };
+static char pil_ssr_reason[MAX_SSR_REASON_LEN];
+static char *ssr_reason = pil_ssr_reason;
+module_param(ssr_reason, charp, S_IRUGO);
 
 /**
  * struct reg_info - regulator info

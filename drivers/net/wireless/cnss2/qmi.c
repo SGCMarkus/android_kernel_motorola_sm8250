@@ -601,7 +601,11 @@ static int cnss_get_bdf_file_name(struct cnss_plat_data *plat_priv,
 			break;
 		// END IKSWR-1888 Support loading different bdwlan.elf
 		/* Board ID will be equal or less than 0xFF in GF mask case */
-		if (plat_priv->board_info.board_id == 0xFF) {
+		// BEGIN IKSWR-1888 Support loading different bdwlan.elf
+		if (selectFileNameByProduct(filename_tmp) > 0)
+                        break;
+                else if (plat_priv->board_info.board_id == 0xFF) {
+		// END IKSWR-1888 Support loading different bdwlan.elf
 			if (plat_priv->chip_info.chip_id & CHIP_ID_GF_MASK)
 				snprintf(filename_tmp, filename_len,
 					 ELF_BDF_FILE_NAME_GF);
