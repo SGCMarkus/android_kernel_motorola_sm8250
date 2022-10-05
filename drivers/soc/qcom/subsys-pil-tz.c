@@ -39,10 +39,6 @@
 #define desc_to_data(d) container_of(d, struct pil_tz_data, desc)
 #define subsys_to_data(d) container_of(d, struct pil_tz_data, subsys_desc)
 
-static char pil_ssr_reason[MAX_SSR_REASON_LEN];
-static char *ssr_reason = pil_ssr_reason;
-module_param(ssr_reason, charp, S_IRUGO);
-
 struct pil_map_fw_info {
 	void *region;
 	unsigned long attrs;

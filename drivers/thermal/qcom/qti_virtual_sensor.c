@@ -216,40 +216,7 @@ static const struct virtual_sensor_data qti_virtual_sensors[] = {
 				"cpuss-usr"},
 		.logic = VIRT_MAXIMUM,
 	},
-#ifdef CONFIG_QTI_VIRTUAL_SENSOR_MOTO_SMITH
-	{
-		.virt_zone_name = "front-usr",
-		.num_sensors = 1,
-		.sensor_names = {"pa-therm2-usr"},
-		.logic = VIRT_WEIGHTED_AVG,
-		.coefficient_ct = 1,
-		.coefficients = {97},
-		.avg_offset = 106200,
-		.avg_denominator = 100,
-	},
-	/* Duplicate rule, need one for user-space and one for thermal core controls */
-	{
-		.virt_zone_name = "front-step",
-		.num_sensors = 1,
-		.sensor_names = {"pa-therm2-usr"},
-		.logic = VIRT_WEIGHTED_AVG,
-		.coefficient_ct = 1,
-		.coefficients = {97},
-		.avg_offset = 106200,
-		.avg_denominator = 100,
-	},
-	{
-		.virt_zone_name = "back-usr",
-		.num_sensors = 1,
-		.sensor_names = {"pa-therm2-usr"},
-		.logic = VIRT_WEIGHTED_AVG,
-		.coefficient_ct = 1,
-		.coefficients = {94},
-		.avg_offset = 102500,
-		.avg_denominator = 100,
-	},
-#else
-	{
+        {
 		/* Temp above rear qtm */
 		.virt_zone_name = "mmw0-surface-step",
 		.num_sensors = 1,
