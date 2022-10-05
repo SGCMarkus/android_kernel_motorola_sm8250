@@ -795,7 +795,8 @@ static int dsi_panel_update_backlight(struct dsi_panel *panel,
 {
 	int rc = 0;
 	struct mipi_dsi_device *dsi;
-	struct dsi_backlight_config *bl;
+
+	struct dsi_backlight_config *bl = &panel->bl_config;
 
 	if (!panel || (bl_lvl > 0xffff)) {
 		DSI_ERR("invalid params\n");
