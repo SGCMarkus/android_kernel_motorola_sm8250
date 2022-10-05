@@ -13,3 +13,4 @@ endif
 
 aw882xx_k419-objs = aw882xx.o
 obj-$(CONFIG_SND_SOC_AWINIC_AW882XX) += aw882xx_k419.o
+

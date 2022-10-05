@@ -25,6 +25,7 @@
 #include <linux/of_gpio.h>
 #include <linux/delay.h>
 #include <linux/slab.h>
+#include <linux/fs.h>
 #include <linux/miscdevice.h>
 #include <linux/device.h>
 #include <linux/firmware.h>
