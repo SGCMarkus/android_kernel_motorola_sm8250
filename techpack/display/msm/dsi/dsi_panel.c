@@ -5459,6 +5459,7 @@ err:
 
 int dsi_panel_post_enable(struct dsi_panel *panel)
 {
+	struct msm_param_info param_info;
 	int rc = 0;
 
 	if (!panel) {
@@ -5485,6 +5486,14 @@ int dsi_panel_post_enable(struct dsi_panel *panel)
 
 	PANEL_NOTIFY(PANEL_EVENT_DISPLAY_ON);
 
+	if(panel->hbm_enabled) {
+		mutex_unlock(&panel->panel_lock);
+		param_info.param_idx = PARAM_HBM_ID;
+		param_info.value = HBM_OFF_STATE;
+		dsi_panel_set_param(panel, &param_info);
+		param_info.value = HBM_ON_STATE;
+		dsi_panel_set_param(panel, &param_info);
+	}
 error:
 	mutex_unlock(&panel->panel_lock);
 	return rc;
