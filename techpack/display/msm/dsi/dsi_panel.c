@@ -1230,6 +1230,65 @@ void dsi_panel_reset_param(struct dsi_panel *panel)
 	}
 }
 
+void dsi_panel_set_custom_param(struct dsi_panel *panel)
+{
+	struct panel_param *param;
+	struct msm_param_info param_info;
+	struct dsi_display *display = NULL;
+	struct sde_kms *sde_kms;
+	int i = 0;
+	bool apply = false;
+	char input[] = { MOTUTIL_KMS_PROP_TEST, MOTUTIL_MAIN_DISP,
+			 KMSPROPTEST_GETPROP, -1};
+
+	display = container_of(panel->host, struct dsi_display, host);
+	if (!display) {
+		DSI_ERR("failed to retrieve display handle\n", display);
+		return;
+	}
+
+	sde_kms = to_sde_kms(
+		((struct msm_drm_private *)display->drm_dev->dev_private)->kms);
+
+	for (i = 0; i < PARAM_ID_NUM; i++) {
+		param = &dsi_panel_param[0][i];
+		switch (i) {
+			case PARAM_HBM_ID :
+				input[KMSPROPTEST_PROP_INDEX] = KMSPROPTEST_TYPE_HBM;
+				param_info.param_idx = PARAM_HBM_ID;
+				param_info.param_conn_idx = CONNECTOR_PROP_HBM;
+				apply = true;
+				break;
+			case PARAM_CABC_ID :
+				input[KMSPROPTEST_PROP_INDEX] = KMSPROPTEST_TYPE_CABC;
+				param_info.param_idx = PARAM_CABC_ID;
+				param_info.param_conn_idx = CONNECTOR_PROP_CABC;
+				apply = true;
+				break;
+			case PARAM_ACL_ID :
+				input[KMSPROPTEST_PROP_INDEX] = KMSPROPTEST_TYPE_ACL;
+				param_info.param_idx = PARAM_ACL_ID;
+				param_info.param_conn_idx = CONNECTOR_PROP_ACL;
+				apply = true;
+				break;
+			case PARAM_DC_ID :
+				input[KMSPROPTEST_PROP_INDEX] = KMSPROPTEST_TYPE_DC;
+				param_info.param_idx = PARAM_DC_ID;
+				param_info.param_conn_idx = CONNECTOR_PROP_DC;
+				apply = true;
+				break;
+			default:
+				break;
+		}
+		if (apply)
+			param_info.value = sde_debugfs_motUtil_kms_prop_test(sde_kms, ARRAY_SIZE(input), input);
+			if (dsi_panel_set_param(panel, &param_info) < 0)
+				pr_err("Failed to set panel parameter id: %d, value: %d\n",
+					   param_info.param_idx, param_info.value);
+		apply = false;
+	}
+}
+
 static int dsi_panel_bl_register(struct dsi_panel *panel)
 {
 	int rc = 0;

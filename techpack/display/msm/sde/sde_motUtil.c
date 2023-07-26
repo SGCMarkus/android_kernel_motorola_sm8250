@@ -446,6 +446,12 @@ struct mot_kmsprop_attribute {
 	enum sde_motUtil_kmsPropTest_ConnPropType conn_type;
 };
 
+int sde_debugfs_motUtil_kms_prop_test(struct sde_kms *kms,
+					size_t count, char input[])
+{
+	return _sde_debugfs_motUtil_kms_prop_test(kms, count, input);
+}
+
 static ssize_t dsi_display_mot_kmsprop_show(struct device *dev,
 					    struct device_attribute *attr,
 					    char *buf)
