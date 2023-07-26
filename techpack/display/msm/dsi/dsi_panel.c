@@ -1292,11 +1292,12 @@ void dsi_panel_set_custom_param(struct dsi_panel *panel)
 			default:
 				break;
 		}
-		if (apply)
+		if (apply) {
 			param_info.value = sde_debugfs_motUtil_kms_prop_test(sde_kms, ARRAY_SIZE(input), input);
 			if (dsi_panel_set_param(panel, &param_info) < 0)
 				pr_err("Failed to set panel parameter id: %d, value: %d\n",
 					   param_info.param_idx, param_info.value);
+		}
 		apply = false;
 	}
 }
