@@ -471,6 +471,7 @@ static ssize_t dsi_display_mot_kmsprop_store(struct device *dev,
 					     struct device_attribute *attr,
 					     const char *buf, size_t count)
 {
+	struct dsi_display *display;
 	struct mot_kmsprop_attribute *kmsprop_attr =
 		container_of(attr, struct mot_kmsprop_attribute, attr);
 	char input[] = { MOTUTIL_KMS_PROP_TEST, MOTUTIL_MAIN_DISP,
@@ -488,6 +489,12 @@ static ssize_t dsi_display_mot_kmsprop_store(struct device *dev,
 
 	if (rc < 0)
 		return rc;
+
+	if (kmsprop_attr->conn_type == KMSPROPTEST_TYPE_HBM) {
+		display = dev_get_drvdata(dev);
+		display->panel->hbm_enabled = !!val;
+		pr_info("Update hbm_enabled=%d\n", display->panel->hbm_enabled);
+	}
 
 	return count;
 }
