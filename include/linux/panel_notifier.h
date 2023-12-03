@@ -21,6 +21,7 @@ enum panel_event {
 	PANEL_EVENT_PRE_DISPLAY_ON,
 	PANEL_EVENT_DISPLAY_OFF,
 	PANEL_EVENT_DISPLAY_ON,
+	PANEL_EVENT_DISPLAY_ON_PREPARE,
 	PANEL_EVENT_PANEL_PREPARE,
 };
 
@@ -53,6 +54,7 @@ static inline int panel_notify(unsigned int event, void *data)
 {
 	return -ENOSYS;
 }
+
 static inline int touch_set_state(int state, int panel_idx);
 {
 	return -ENOSYS;
@@ -61,7 +63,6 @@ static inline int check_touch_state(int *state, int panel_idx);
 {
 	return -ENOSYS;
 }
-
 
 #endif
 #endif
